@@ -12,5 +12,3 @@
     copy.setAttribute("aria-hidden", "true");
     scrollContainer.appendChild(copy);
 })();
-
-
