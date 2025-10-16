@@ -1,0 +1,23 @@
+{
+    "name": "clickpress/contao-logo-carousel",
+    "description": "Logo carousel component for Contao. Ready to use.",
+    "type": "contao-bundle",
+    "require": {
+        "contao/core-bundle": "^5.3"
+    },
+    "license": "LGPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Clickpress\\ContaoLogoCarousel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stefan Schulz-Lauterbach",
+            "email": "ssl@clickpress.de"
+        }
+    ],
+    "extra": {
+        "contao-manager-plugin": "Clickpress\\ContaoLogoCarousel\\ContaoManager\\Plugin"
+    }
+}

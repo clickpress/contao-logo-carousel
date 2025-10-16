@@ -1,0 +1,39 @@
+.content-logo-carousel {
+    overflow: hidden; /* Hide overflowing logos for smooth scroll effect */
+    display: flex;
+
+}
+
+.content-logo-carousel ul {
+    display: flex;
+    padding-right: 3rem;
+    gap: 3rem;
+    white-space: nowrap;
+    will-change: transform;
+    animation: scroll 20s infinite linear;
+    place-items: center;
+}
+
+.content-logo-carousel:hover ul {
+    animation-play-state: paused;
+}
+
+.content-logo-carousel ul img {
+    max-width: none;
+    will-change: transform;
+    transition: transform 0.3s ease; /* Smooth scale on hover */
+}
+
+.content-logo-carousel ul img:hover {
+    transform: scale(1.2);
+}
+
+/* Keyframes to create leftward scrolling effect */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%); /* Move left by 50% of the track width */
+    }
+}

@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    Clickpress\ContaoLogoCarousel\:
+        resource: ../src
+        exclude: ../src/{ContaoManager,DependencyInjection,ContaoLogoCarousel.php}
+
+    Clickpress\ContaoLogoCarousel\Controller\ContentElement\LogoCarouselController:
+        arguments:
+            $filesStorage: '@contao.filesystem.virtual.files'
+            $studio: '@contao.image.studio'
+            $validExtensions: '%contao.image.valid_extensions%'
+        tags:
+            - { name: 'controller.service_arguments' }

@@ -1,0 +1,28 @@
+{% extends "@Contao/content_element/_base.html.twig" %}
+
+{% use "@Contao/component/_list.html.twig" %}
+{% use "@Contao/component/_figure.html.twig" %}
+{% use "@Contao/component/_stylesheet.html.twig" %}
+
+{% set attributes = attrs()
+    .addClass("#{type}")
+    .mergeWith(attributes|default) %}
+
+{% block content %}
+    {% with {items: images} %}{{ block('list_component') }}{% endwith %}
+
+
+
+    {% with {file: asset('bundles/contaologocarousel/logocarousel.css'), lazy: true} %}
+        {{ block('stylesheet_component') }}
+    {% endwith %}
+    <script src="{{ asset('bundles/contaologocarousel/logocarousel.js') }}"></script>
+{% endblock %}
+
+{% block list_item %}
+    {% with {figure: item} %}{{ block('figure_component') }}{% endwith %}
+{% endblock %}
+
+
+
+
