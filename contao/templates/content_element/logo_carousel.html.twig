@@ -10,13 +10,6 @@
 
 {% block content %}
     {% with {items: images} %}{{ block('list_component') }}{% endwith %}
-
-
-
-    {% with {file: asset('bundles/contaologocarousel/logocarousel.css'), lazy: true} %}
-        {{ block('stylesheet_component') }}
-    {% endwith %}
-    <script src="{{ asset('bundles/contaologocarousel/logocarousel.js') }}"></script>
 {% endblock %}
 
 {% block list_item %}

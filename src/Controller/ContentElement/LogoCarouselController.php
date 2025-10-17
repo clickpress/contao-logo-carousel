@@ -11,8 +11,10 @@ use Contao\CoreBundle\Filesystem\SortMode;
 use Contao\CoreBundle\Filesystem\VirtualFilesystem;
 use Contao\CoreBundle\Image\Studio\Figure;
 use Contao\CoreBundle\Image\Studio\Studio;
+use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\CoreBundle\Twig\FragmentTemplate;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 #[AsContentElement(category: 'miscellaneous', label: 'Infinite Scroller')]
@@ -23,12 +25,18 @@ class LogoCarouselController extends AbstractContentElementController
         private readonly VirtualFilesystem $filesStorage,
         private readonly Studio $studio,
         private readonly array $validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'],
+        private readonly RequestStack $requestStack,
+        private readonly ScopeMatcher $scopeMatcher,
     ) {
     }
 
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
-        $GLOBALS['TL_CSS'][] = 'bundles/contao-logo-carousel/logocarousel.css|static';
+        if (!$this->scopeMatcher->isBackendRequest($this->requestStack->getCurrentRequest())) {
+            $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaologocarousel/logocarousel.js|async|static';
+        }
+
+        $GLOBALS['TL_CSS'][] = 'bundles/contaologocarousel/logocarousel.css|static';
 
         $filesystemItems = FilesystemUtil::listContentsFromSerialized($this->filesStorage, $this->getSources($model))
             ->filter(fn($item) => \in_array($item->getExtension(true), $this->validExtensions, true));

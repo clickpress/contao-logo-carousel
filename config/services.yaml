@@ -11,5 +11,7 @@ services:
             $filesStorage: '@contao.filesystem.virtual.files'
             $studio: '@contao.image.studio'
             $validExtensions: '%contao.image.valid_extensions%'
+            $requestStack: '@request_stack'
+            $scopeMatcher: '@contao.routing.scope_matcher'
         tags:
             - { name: 'controller.service_arguments' }
